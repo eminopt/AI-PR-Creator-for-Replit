@@ -33,7 +33,7 @@ jobs:
             exit 1
           fi
 
-          BASE="${BRANCH##*/base--}"
+          BASE="${BRANCH#*/base--}"
 
           if [ -z "$BASE" ]; then
             echo "❌ Could not determine base branch from '$BRANCH'."

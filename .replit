@@ -1,0 +1,25 @@
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Run Script"
+
+[[workflows.workflow]]
+name = "Run Script"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "bash -c 'echo \"AI PR Creator - CLI Utility\" && echo \"\" && echo \"Usage: ./scripts/initiate-ai-pr.sh <base-branch> <feature-name> <pr-title>\" && echo \"\" && echo \"Run the script from the Shell tab when ready.\"'"
+
+[workflows.workflow.metadata]
+outputType = "console"
+
+[agent]
+expertMode = true
