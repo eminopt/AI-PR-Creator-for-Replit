@@ -46,7 +46,7 @@ Run the script with your feature details:
 ./scripts/initiate-ai-pr.sh main email-validator "Add email validation utility"
 ```
 
-The script creates a branch named `ai/<feature-name>/base--<base-branch>`. The workflow extracts the base branch from the `/base--` marker in the branch name, so it works reliably even if the base branch contains `ai` or slashes.
+The script creates a branch named `ai/<feature-name>/base--<base-branch>`. The workflow extracts the base branch by finding the **first** occurrence of `/base--` in the branch name and using everything after it as the PR target. This means it works reliably even if the base branch itself is a previous AI branch (e.g., `ai/old-feature/base--main`) — the workflow will always use the base you provided, not one embedded in a previous branch name.
 
 ### Step 4: Publish the Branch from the Gui
 
