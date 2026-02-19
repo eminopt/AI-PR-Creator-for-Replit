@@ -16,11 +16,17 @@ Add the following files to your repository exactly like this:
    
 ## Usage
 
-### Step 1: Ask Replit Agent to Build Something
+### Step 1: Enable GitHub Actions Permissions
+
+Before using this tool, make sure your repository allows GitHub Actions to create pull requests:
+
+Go to **Settings > Actions** and ensure **"Allow GitHub Actions to create and approve pull requests"** is enabled.
+
+### Step 2: Ask Replit Agent to Build Something
 
 Talk to Replit Agent and ask it to create code.
 
-### Step 2: Create the Branch
+### Step 3: Create the Branch
 
 Run the script with your feature details:
 
@@ -42,11 +48,11 @@ Run the script with your feature details:
 
 The script creates a branch named `ai/<feature-name>/base--<base-branch>`. The workflow extracts the base branch from the `/base--` marker in the branch name, so it works reliably even if the base branch contains `ai` or slashes.
 
-### Step 3: Publish the Branch from the Gui
+### Step 4: Publish the Branch from the Gui
 
 After running the script, go to the Git tab in Replit and publish your branch.
 
-### Step 4: Automatic Pull Request Creation
+### Step 5: Automatic Pull Request Creation
 
 Once the branch is published, the GitHub Actions workflow will automatically create a PR on GitHub for the branch.
 
@@ -54,11 +60,6 @@ Once the branch is published, the GitHub Actions workflow will automatically cre
 
 #### Permission denied
 Run: `chmod +x scripts/initiate-ai-pr.sh`
-
-#### GitHub Actions Fails to Create PR
-If the workflow does not successfully create a PR, check your repository's GitHub Actions permissions:
-
-Go to Settings > Actions and ensure "Allow GitHub Actions to create and approve pull requests" is enabled.
 
 #### Common Issues
 
@@ -75,7 +76,8 @@ Each AI branch creation triggers a workflow run that shows logs and success/fail
 
 | Step | Action |
 |------|--------|
-| 1 | Ask Agent to build something |
-| 2 | Run `./scripts/initiate-ai-pr.sh main feature-name "PR Title"` |
-| 3 | Publish the branch from the Gui in Git tab (push as origin/<branch_name>)|
-| 4 | Go to your repository and the PR should be there once the action completes successfully |
+| 1 | Enable GitHub Actions permissions in Settings > Actions |
+| 2 | Ask Agent to build something |
+| 3 | Run `./scripts/initiate-ai-pr.sh main feature-name "PR Title"` |
+| 4 | Publish the branch from the Gui in Git tab (push as origin/<branch_name>)|
+| 5 | Go to your repository and the PR should be there once the action completes successfully |
