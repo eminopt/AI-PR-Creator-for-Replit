@@ -2,19 +2,19 @@
 set -e
 
 # ===== CONFIG =====
-BASE_BRANCH="main"
 BRANCH_PREFIX="ai"
 
 # ===== INPUT =====
-FEATURE_NAME="$1"
-PR_TITLE="$2"
+BASE_BRANCH="$1"
+FEATURE_NAME="$2"
+PR_TITLE="$3"
 
-if [ -z "$FEATURE_NAME" ] || [ -z "$PR_TITLE" ]; then
-  echo "Usage: $0 <feature-name> <pr-title> [pr-body]"
+if [ -z "$BASE_BRANCH" ] || [ -z "$FEATURE_NAME" ] || [ -z "$PR_TITLE" ]; then
+  echo "Usage: $0 <base-branch> <feature-name> <pr-title>"
   exit 1
 fi
 
-BRANCH_NAME="$BRANCH_PREFIX/$FEATURE_NAME"
+BRANCH_NAME="$BRANCH_PREFIX/$BASE_BRANCH/$FEATURE_NAME"
 
 echo "🚀 Initiating AI Feature Branch Creation..."
 echo "Feature name: $FEATURE_NAME"

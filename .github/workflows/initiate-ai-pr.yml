@@ -19,10 +19,27 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          set -e
+
           BRANCH="${{ github.event.ref }}"
           REPO="${{ github.repository }}"
 
-          echo "Creating Pull Request for branch '$BRANCH' in repo '$REPO'"
+          echo "AI branch created: $BRANCH"
+
+          # Remove "ai/" prefix
+          STRIPPED="${BRANCH#ai/}"
+
+          # Extract base branch (everything before first "/")
+          BASE="${STRIPPED%%/*}"
+
+          if [ -z "$BASE" ] || [ "$BASE" = "$STRIPPED" ]; then
+            echo "❌ Invalid branch format."
+            echo "Expected: ai/<base-branch>/<something>"
+            exit 1
+          fi
+
+          echo "Derived base branch: $BASE"
+          echo "Creating PR: $BRANCH → $BASE"
 
           curl -s -X POST \
             -H "Authorization: Bearer $GH_TOKEN" \
@@ -31,6 +48,6 @@ jobs:
             -d "{
               \"title\": \"AI: $BRANCH\",
               \"head\": \"$BRANCH\",
-              \"base\": \"main\",
-              \"body\": \"Automatically created PR for AI branch \`$BRANCH\`.\"
+              \"base\": \"$BASE\",
+              \"body\": \"Automatically created PR for AI branch \`$BRANCH\` targeting \`$BASE\`.\"
             }"
