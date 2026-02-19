@@ -1,10 +1,3 @@
-modules = ["bash"]
-[agent]
-expertMode = true
-
-[nix]
-channel = "stable-25_05"
-
 [workflows]
 runButton = "Project"
 
@@ -27,3 +20,6 @@ args = "bash -c 'echo \"AI PR Creator - CLI Utility\" && echo \"\" && echo \"Usa
 
 [workflows.workflow.metadata]
 outputType = "console"
+
+[agent]
+expertMode = true

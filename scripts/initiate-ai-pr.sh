@@ -14,7 +14,7 @@ if [ -z "$BASE_BRANCH" ] || [ -z "$FEATURE_NAME" ] || [ -z "$PR_TITLE" ]; then
   exit 1
 fi
 
-BRANCH_NAME="$BRANCH_PREFIX/$BASE_BRANCH/$FEATURE_NAME"
+BRANCH_NAME="$BRANCH_PREFIX/$FEATURE_NAME/base--$BASE_BRANCH"
 
 echo "🚀 Initiating AI Feature Branch Creation..."
 echo "Base branch: $BASE_BRANCH"
