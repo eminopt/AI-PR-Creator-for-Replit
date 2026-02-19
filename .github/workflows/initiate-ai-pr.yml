@@ -26,19 +26,21 @@ jobs:
 
           echo "AI branch created: $BRANCH"
 
-          # Remove "ai/" prefix
-          STRIPPED="${BRANCH#ai/}"
-
-          # Extract base branch (everything before first "/")
-          BASE="${STRIPPED%%/*}"
-
-          if [ -z "$BASE" ] || [ "$BASE" = "$STRIPPED" ]; then
+          # Extract base branch: everything after the last "/base--"
+          if [[ "$BRANCH" != *"/base--"* ]]; then
             echo "❌ Invalid branch format."
-            echo "Expected: ai/<base-branch>/<something>"
+            echo "Expected: ai/<feature-name>/base--<base-branch>"
             exit 1
           fi
 
-          echo "Derived base branch: $BASE"
+          BASE="${BRANCH##*/base--}"
+
+          if [ -z "$BASE" ]; then
+            echo "❌ Could not determine base branch from '$BRANCH'."
+            exit 1
+          fi
+
+          echo "Base branch: $BASE"
           echo "Creating PR: $BRANCH → $BASE"
 
           curl -s -X POST \
