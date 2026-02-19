@@ -17,6 +17,7 @@ fi
 BRANCH_NAME="$BRANCH_PREFIX/$BASE_BRANCH/$FEATURE_NAME"
 
 echo "🚀 Initiating AI Feature Branch Creation..."
+echo "Base branch: $BASE_BRANCH"
 echo "Feature name: $FEATURE_NAME"
 echo "PR title: $PR_TITLE"
 echo "Target branch: $BRANCH_NAME"
