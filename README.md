@@ -76,7 +76,7 @@ Each AI branch creation triggers a workflow run that shows logs and success/fail
 
 | Step | Action |
 |------|--------|
-| 1 | Enable GitHub Actions permissions in Settings > Actions |
+| 1 | Enable "Allow GitHub Actions to create and approve pull requests" in Settings > Actions |
 | 2 | Ask Agent to build something |
 | 3 | Run `./scripts/initiate-ai-pr.sh main feature-name "PR Title"` |
 | 4 | Publish the branch from the Gui in Git tab (push as origin/<branch_name>)|
